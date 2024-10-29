@@ -27,7 +27,6 @@ export default function PagePattern({whichPage, welcomeText, linearGradient, det
 
     const router = useRouter()
     const params = useSearchParams()
-    let currentStyle: any
 
     const actualPage:string|null = params.get('page')
 
