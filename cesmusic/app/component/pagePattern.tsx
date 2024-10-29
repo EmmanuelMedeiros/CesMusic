@@ -103,7 +103,7 @@ export default function PagePattern({whichPage, welcomeText, linearGradient, det
         router.push(`/${page}/12345`)
     }
 
-    const pageStyle = {
+    const pageStyle: any = {
         "--logo-gradient": linearGradient,
         "--details-color-a": detailsColorA,
         "--details-color-b": detailsColorB
