@@ -52,11 +52,11 @@ export default function PagePattern({whichPage, linearGradient, detailsColorA, d
         }
     }
 
-    const pageStyle = {
+/*     const pageStyle = {
         "--logo-gradient": linearGradient,
         "--details-color-a": detailsColorA,
         "--details-color-b": detailsColorB
-    }    
+    }    */ 
 
     const postList = [
         {
