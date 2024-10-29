@@ -7,9 +7,7 @@ import { CiPlay1 } from "react-icons/ci";
 
 import { useEffect, useState } from 'react';
 
-import stylesEletronic from '../styles/eletronicComposionPattern.module.css'
-import stylesAudioSoftware from '../styles/eletronicComposionPattern.module.css'
-import styleMusicalTecnology from '../styles/musicalTecnologyPattern.module.css'
+import styles from '../styles/pagePattern.module.css'
 
 import PaginationComponent from './paginationComponent';
 
@@ -19,10 +17,13 @@ import WhichPage from '../enum/WhichPage';
 interface PatternProps {
     whichPage: WhichPage,
     welcomeText: string,
+    linearGradient: any,
+    detailsColorA: any,
+    detailsColorB: any
 }
 
 
-export default function PagePattern({whichPage, welcomeText}: PatternProps) {
+export default function PagePattern({whichPage, welcomeText, linearGradient, detailsColorA, detailsColorB}: PatternProps) {
 
     const router = useRouter()
     const params = useSearchParams()
@@ -103,41 +104,35 @@ export default function PagePattern({whichPage, welcomeText}: PatternProps) {
         router.push(`/${page}/12345`)
     }
 
-    if(whichPage === WhichPage.eletronic_composion) {
-        currentStyle = stylesEletronic
-    } else if(whichPage === WhichPage.audio_software) {
-        currentStyle = stylesAudioSoftware
-    } else {
-        currentStyle = styleMusicalTecnology
-    }
-
-    const logoGradient: any = {
-        '--logo-gradient': 'linear-gradient(45deg, #D870DA, #44B6D5, #6BD167)'
-    }
+    const pageStyle = {
+        "--logo-gradient": linearGradient,
+        "--details-color-a": detailsColorA,
+        "--details-color-b": detailsColorB
+    }  
 
     return(
             <div 
-                style={logoGradient}
-                className={currentStyle.container}>
-                <div className={currentStyle.header}>
+                style={pageStyle}
+                className={styles.container}>
+                <div className={styles.header}>
                     <Link href="/">
-                        <h1 id={currentStyle.logo_text} className='font-semibold'>CesMusic</h1>
+                        <h1 id={styles.logo_text} className='font-semibold'>CesMusic</h1>
                     </Link>
 
                     <h2>{welcomeText}</h2>
 
-                    <div className={currentStyle.input_block}>
+                    <div className={styles.input_block}>
                         <input 
                             onChange={(element) => onHandleSearching(element)}
                             type="text" 
                             name="search" 
-                            id={currentStyle.search} 
+                            id={styles.search} 
                             placeholder="Pesquise alguma postagem aqui" 
                         />
                         
                         <button>
-                            <CiPlay1 id={currentStyle.play} className={`text-xl transition-all duration-500 ${searching ? currentStyle.show : currentStyle.not_show}`}/>
-                            <div id={currentStyle.circle} className={`${!searching ? currentStyle.show : currentStyle.not_show}`}></div>    
+                            <CiPlay1 id={styles.play} className={`text-xl transition-all duration-500 ${searching ? styles.show : styles.not_show}`}/>
+                            <div id={styles.circle} className={`${!searching ? styles.show : styles.not_show}`}></div>    
                         </button>
 
                     </div>
@@ -145,21 +140,21 @@ export default function PagePattern({whichPage, welcomeText}: PatternProps) {
                 </div>
 
                 {postList.map((element, index) => (
-                    <div className={`${currentStyle.post} ${index % 2 == 0 ? currentStyle.postA : currentStyle.postB}`} key={element.id}>
+                    <div className={`${styles.post} ${index % 2 == 0 ? styles.postA : styles.postB}`} key={element.id}>
 
-                        <div key={element.id} className={currentStyle.title_and_text}>
+                        <div key={element.id} className={styles.title_and_text}>
                             <h1 className='font-semibold'>{element.title}</h1>
                             <p>{element.textPreview}</p>
                         </div>
 
-                        <div  className={currentStyle.info_bellow}>
+                        <div  className={styles.info_bellow}>
                             <button onClick={onHandlerGoToPost}>
                                 <p>Acessar Publicação</p>
                             </button>
 
-                            <div className={`${currentStyle.likes_and_owner}`}>
+                            <div className={`${styles.likes_and_owner}`}>
 
-                                <p id={currentStyle.owner_name}>Post feito por {element.postOwner}</p>
+                                <p id={styles.owner_name}>Post feito por {element.postOwner}</p>
                             </div>
                         </div>
                         
