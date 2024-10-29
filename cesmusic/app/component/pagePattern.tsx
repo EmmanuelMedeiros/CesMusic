@@ -111,7 +111,7 @@ export default function PagePattern({whichPage, linearGradient, detailsColorA, d
 
     return(
             <div className={styles.container} 
-                style={pageStyle}>
+                /* style={pageStyle} */>
                 <div className={styles.header}>
                     <Link href="/">
                         <h1 id={styles.logo_text} className='font-semibold'>CesMusic</h1>
