@@ -1,14 +1,21 @@
 'use client'
 
+import { Suspense } from 'react'
+
+
 import PagePattern from '../component/pagePattern'
 import WhichPage from '../enum/WhichPage'
 
 export default function EletronicComposion() {
 
     return(
-        <PagePattern
-        welcomeText={"🖐️ Oi!"}
-        whichPage={WhichPage.eletronic_composion}
-    />
+        <div>
+            <Suspense fallback={<div>Loading...</div>}>
+                <PagePattern
+                welcomeText={"🖐️ Oi!"}
+                whichPage={WhichPage.eletronic_composion}
+                />
+            </Suspense>
+        </div>
     )
 }
