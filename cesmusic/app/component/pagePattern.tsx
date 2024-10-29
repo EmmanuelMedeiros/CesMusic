@@ -45,7 +45,6 @@ export default function PagePattern({whichPage, linearGradient, detailsColorA, d
 
     const onHandleSearching = (element: any) => {
 
-
         if(element.target.value.trim() != "" && typeof element.target.value.trim() == "string") {
             setSearching(true)
         } else{
