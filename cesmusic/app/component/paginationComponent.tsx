@@ -13,7 +13,7 @@ interface Pages {
 
 export default function PaginationComponent({pages, currentPage, setCurrentPage}: Pages) {
 
-    let field: JSX.Element[] = [];
+    const field: JSX.Element[] = [];
 
     for (let i = 1; i <= pages; i++) {
 

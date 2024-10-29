@@ -1,4 +1,3 @@
-import { HtmlProps } from "next/dist/shared/lib/html-context.shared-runtime"
 import { StaticImageData } from "next/image"
 import { ReactNode } from "react"
 

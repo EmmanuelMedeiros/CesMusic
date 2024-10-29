@@ -13,8 +13,16 @@ import PaginationComponent from './paginationComponent';
 import { useRouter, useSearchParams } from 'next/navigation';
 import WhichPage from '../enum/WhichPage';
 
+interface PatternProps {
+    whichPage: WhichPage,
+    linearGradient: string,
+    detailsColorA: string,
+    detailsColorB: string,
+    welcomeText: string,
+}
 
-export default function PagePattern(props: any) {
+
+export default function PagePattern({whichPage, linearGradient, detailsColorA, detailsColorB, welcomeText}: PatternProps) {
 
     const router = useRouter()
     const params = useSearchParams()
@@ -26,11 +34,11 @@ export default function PagePattern(props: any) {
 
     useEffect(() => {
 
-        if(props.whichPage == WhichPage.audio_software) {
+        if(whichPage == WhichPage.audio_software) {
             router.push(`/audio_software?page=${currentPage.toString()}`)
-        } else if(props.whichPage == WhichPage.musical_tec) {
+        } else if(whichPage == WhichPage.musical_tec) {
             router.push(`/musical_tec?page=${currentPage.toString()}`)
-        } else if(props.whichPage == WhichPage.eletronic_composion) {
+        } else if(whichPage == WhichPage.eletronic_composion) {
             router.push(`/eletronic_composition?page=${currentPage.toString()}`)
         }
     }, [currentPage])
@@ -46,9 +54,9 @@ export default function PagePattern(props: any) {
     }
 
     const pageStyle = {
-        "--logo-gradient": props.linearGradient,
-        "--details-color-a": props.detailsColorA,
-        "--details-color-b": props.detailsColorB
+        "--logo-gradient": linearGradient,
+        "--details-color-a": detailsColorA,
+        "--details-color-b": detailsColorB
     }    
 
     const postList = [
@@ -89,11 +97,11 @@ export default function PagePattern(props: any) {
 
         let page: string = ""
 
-        if(props.whichPage == WhichPage.audio_software) {
+        if(whichPage == WhichPage.audio_software) {
             page = "audio_software"
-        } else if(props.whichPage == WhichPage.musical_tec) {
+        } else if(whichPage == WhichPage.musical_tec) {
             page = "musical_tec"
-        } else if(props.whichPage == WhichPage.eletronic_composion) {
+        } else if(whichPage == WhichPage.eletronic_composion) {
             page = "eletronic_composition"
         }
 
@@ -110,7 +118,7 @@ export default function PagePattern(props: any) {
                         <h1 id={styles.logo_text} className='font-semibold'>CesMusic</h1>
                     </Link>
 
-                    <h2>{props.welcomeText}</h2>
+                    <h2>{welcomeText}</h2>
 
                     <div className={styles.input_block}>
                         <input 
