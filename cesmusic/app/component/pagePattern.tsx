@@ -111,7 +111,7 @@ export default function PagePattern({whichPage, welcomeText}: PatternProps) {
         currentStyle = styleMusicalTecnology
     }
 
-    const logoGradient = {
+    const logoGradient: any = {
         '--logo-gradient': 'linear-gradient(45deg, #D870DA, #44B6D5, #6BD167)'
     }
 
