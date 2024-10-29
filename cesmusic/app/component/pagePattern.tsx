@@ -4,9 +4,7 @@ import Link from 'next/link'
 
 
 import { CiPlay1 } from "react-icons/ci";
-import { CiHeart } from "react-icons/ci";
 
-import Image from 'next/image'
 import { useEffect, useState } from 'react';
 
 import styles from '../styles/pagePattern.module.css'

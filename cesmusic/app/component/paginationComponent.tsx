@@ -1,10 +1,8 @@
 'use client'
 
-import styles from '../styles/pagination.module.css'
-
 import { JSX } from 'react/jsx-runtime'
 
-import { Dispatch, SetStateAction, useState, useEffect } from 'react'
+import { Dispatch, SetStateAction} from 'react'
 
 interface Pages {
     pages: number

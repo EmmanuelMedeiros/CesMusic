@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import PagePattern from '../component/pagePattern'
 
 import { useSearchParams } from 'next/navigation'

@@ -3,8 +3,6 @@
 import style from '../styles/landingPageA.module.css'
 import Image from 'next/image'
 
-import { lindenHill } from '../layout'
-
 import logo_text from '../assets/logo_text.svg'
 import scrollDown from '../assets/scrollDown.svg'
 

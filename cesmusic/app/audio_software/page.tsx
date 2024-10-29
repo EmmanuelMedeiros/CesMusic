@@ -1,12 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import PagePattern from '../component/pagePattern'
-import { useRouter } from 'next/navigation'
-
-import styles from '../styles/pagePattern.module.css'
-import PageParams from '../interface/PageParams'
-import { Params } from 'next/dist/server/request/params'
 
 import { useSearchParams } from 'next/navigation'
 import WhichPage from '../enum/WhichPage'
