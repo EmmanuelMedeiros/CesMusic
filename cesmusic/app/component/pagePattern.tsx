@@ -7,7 +7,10 @@ import { CiPlay1 } from "react-icons/ci";
 
 import { useEffect, useState } from 'react';
 
-import styles from '../styles/pagePattern.module.css'
+import stylesEletronic from '../styles/eletronicComposionPattern.module.css'
+import stylesAudioSoftware from '../styles/eletronicComposionPattern.module.css'
+import styleMusicalTecnology from '../styles/musicalTecnologyPattern.module.css'
+
 import PaginationComponent from './paginationComponent';
 
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -15,17 +18,15 @@ import WhichPage from '../enum/WhichPage';
 
 interface PatternProps {
     whichPage: WhichPage,
-    linearGradient: any,
-    detailsColorA: any,
-    detailsColorB: any,
     welcomeText: string,
 }
 
 
-export default function PagePattern({whichPage, linearGradient, detailsColorA, detailsColorB, welcomeText}: PatternProps) {
+export default function PagePattern({whichPage, welcomeText}: PatternProps) {
 
     const router = useRouter()
     const params = useSearchParams()
+    let currentStyle: any
 
     const actualPage:string|null = params.get('page')
 
@@ -50,13 +51,7 @@ export default function PagePattern({whichPage, linearGradient, detailsColorA, d
         } else{
             setSearching(false)
         }
-    }
-
-/*     const pageStyle = {
-        "--logo-gradient": linearGradient,
-        "--details-color-a": detailsColorA,
-        "--details-color-b": detailsColorB
-    }    */ 
+    }  
 
     const postList = [
         {
@@ -108,29 +103,41 @@ export default function PagePattern({whichPage, linearGradient, detailsColorA, d
         router.push(`/${page}/12345`)
     }
 
+    if(whichPage === WhichPage.eletronic_composion) {
+        currentStyle = stylesEletronic
+    } else if(whichPage === WhichPage.audio_software) {
+        currentStyle = stylesAudioSoftware
+    } else {
+        currentStyle = styleMusicalTecnology
+    }
+
+    const logoGradient = {
+        '--logo-gradient': 'linear-gradient(45deg, #D870DA, #44B6D5, #6BD167)'
+    }
 
     return(
-            <div className={styles.container} 
-                /* style={pageStyle} */>
-                <div className={styles.header}>
+            <div 
+                style={logoGradient}
+                className={currentStyle.container}>
+                <div className={currentStyle.header}>
                     <Link href="/">
-                        <h1 id={styles.logo_text} className='font-semibold'>CesMusic</h1>
+                        <h1 id={currentStyle.logo_text} className='font-semibold'>CesMusic</h1>
                     </Link>
 
                     <h2>{welcomeText}</h2>
 
-                    <div className={styles.input_block}>
+                    <div className={currentStyle.input_block}>
                         <input 
                             onChange={(element) => onHandleSearching(element)}
                             type="text" 
                             name="search" 
-                            id={styles.search} 
+                            id={currentStyle.search} 
                             placeholder="Pesquise alguma postagem aqui" 
                         />
                         
                         <button>
-                            <CiPlay1 id={styles.play} className={`text-xl transition-all duration-500 ${searching ? styles.show : styles.not_show}`}/>
-                            <div id={styles.circle} className={`${!searching ? styles.show : styles.not_show}`}></div>    
+                            <CiPlay1 id={currentStyle.play} className={`text-xl transition-all duration-500 ${searching ? currentStyle.show : currentStyle.not_show}`}/>
+                            <div id={currentStyle.circle} className={`${!searching ? currentStyle.show : currentStyle.not_show}`}></div>    
                         </button>
 
                     </div>
@@ -138,21 +145,21 @@ export default function PagePattern({whichPage, linearGradient, detailsColorA, d
                 </div>
 
                 {postList.map((element, index) => (
-                    <div className={`${styles.post} ${index % 2 == 0 ? styles.postA : styles.postB}`} key={element.id}>
+                    <div className={`${currentStyle.post} ${index % 2 == 0 ? currentStyle.postA : currentStyle.postB}`} key={element.id}>
 
-                        <div key={element.id}  className={styles.title_and_text}>
+                        <div key={element.id} className={currentStyle.title_and_text}>
                             <h1 className='font-semibold'>{element.title}</h1>
                             <p>{element.textPreview}</p>
                         </div>
 
-                        <div  className={styles.info_bellow}>
+                        <div  className={currentStyle.info_bellow}>
                             <button onClick={onHandlerGoToPost}>
                                 <p>Acessar Publicação</p>
                             </button>
 
-                            <div className={`${styles.likes_and_owner}`}>
+                            <div className={`${currentStyle.likes_and_owner}`}>
 
-                                <p id={styles.owner_name}>Post feito por {element.postOwner}</p>
+                                <p id={currentStyle.owner_name}>Post feito por {element.postOwner}</p>
                             </div>
                         </div>
                         

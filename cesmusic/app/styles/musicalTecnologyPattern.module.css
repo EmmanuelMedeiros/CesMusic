@@ -1,7 +1,14 @@
+/* :root {
+    --logo-gradient: 'linear-gradient(45deg, #EBEBEB, #A8DAE2, #E75757)';
+    --details-colors-a: '#6AB8C5';
+    --details-colors-b: '#E75757'
+}
+ */
+
 .container {
     margin-top: 1rem;
     width: 100%;
-    color: var(--general-text-color);
+    color: 'white';
     overflow-y: auto;
 }
 
