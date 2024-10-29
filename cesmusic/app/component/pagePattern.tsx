@@ -15,9 +15,9 @@ import WhichPage from '../enum/WhichPage';
 
 interface PatternProps {
     whichPage: WhichPage,
-    linearGradient: string,
-    detailsColorA: string,
-    detailsColorB: string,
+    linearGradient: any,
+    detailsColorA: any,
+    detailsColorB: any,
     welcomeText: string,
 }
 
