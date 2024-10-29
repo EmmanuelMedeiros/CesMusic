@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import style from '../styles/landingPagePattern.module.css'
 
-import { lindenHill } from '../layout'
+import { lindenHill } from '../font'
 import LandingPageComponent from '../interface/LandingPageComponent'
 
 export default function LandingPagePattern({background, image, title, paragraph, reverse, textAlignment}: LandingPageComponent) {
