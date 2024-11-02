@@ -8,13 +8,17 @@ const kodchasan = Kodchasan ({
   weight: '400'
 })
 
+import { UserContextProvider } from "./context/UserContext";
+
 
 export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
   return (
     <html lang="en">
+      <UserContextProvider>
       <body className={kodchasan.className}>
         {children}
       </body>
+      </UserContextProvider>
     </html>
   );
 }

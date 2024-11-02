@@ -138,6 +138,10 @@ export default function PagePattern({whichPage, welcomeText, linearGradient, det
 
                 </div>
 
+                <p
+                    onClick={() => router.push('/create_post')} 
+                    className='text-grey absolute left-0 right-0 m-auto p-2 rounded-md w-fit mt-9 hover:text-white hover:font-bold hover:bg-[#5AE56B] hover:cursor-pointer'>Criar Postagem</p>
+
                 {postList.map((element, index) => (
                     <div className={`${styles.post} ${index % 2 == 0 ? styles.postA : styles.postB}`} key={element.id}>
 

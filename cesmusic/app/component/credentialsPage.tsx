@@ -8,6 +8,10 @@ import { User } from '../interface/User'
 import { createNewUser, loginUser } from '../function/authentication'
 import ApiResponse from '../interface/ApiResponse'
 
+import { useContext } from 'react'
+
+import UserContext from '../context/UserContext'
+
 interface CredentialsProps {
     isRegistering: boolean
 }
@@ -15,6 +19,7 @@ interface CredentialsProps {
 export default function CredentialsPage({isRegistering}: CredentialsProps) {
 
     const router = useRouter()
+    const userContext = useContext(UserContext)
 
     const onHandleRouter = () => {
         if(isRegistering) {
@@ -60,12 +65,21 @@ export default function CredentialsPage({isRegistering}: CredentialsProps) {
             userPassword = event.target[1].value
 
             const userToLogin: User = {password: userPassword, email: userEmail}
-            console.log(userToLogin)
-
             const result: ApiResponse = await loginUser(userToLogin)
 
             if(result.status == 200) {
-                console.log("Tudo certo ; \n" + result.response.title)
+
+                console.log("Tudo certo ; \n" + result.response)
+                userContext.setJWTToken(result.response.token)
+                userContext.setUserID(result.response.userId)
+                userContext.setUserRole(result.response.userRole)
+
+                localStorage.setItem("userID", result.response.userId)
+                localStorage.setItem("jwtToken",result.response.token )
+                localStorage.setItem("userRole", result.response.userRole)
+
+                router.push('/')
+                
             } else {
                 console.log("Tudo errado ;( \n" + result.response.title)
             }
