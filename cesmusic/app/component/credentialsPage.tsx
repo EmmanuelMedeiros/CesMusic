@@ -4,6 +4,9 @@ import style from '../styles/credentialsPage.module.css'
 import buttonStyle from '../styles/button.module.css'
 
 import { useRouter } from 'next/navigation'
+import { User } from '../interface/User'
+import { createNewUser, loginUser } from '../function/authentication'
+import ApiResponse from '../interface/ApiResponse'
 
 interface CredentialsProps {
     isRegistering: boolean
@@ -21,6 +24,55 @@ export default function CredentialsPage({isRegistering}: CredentialsProps) {
         }
     }
 
+    async function credentialMethod(event: any) {
+
+        let name: string 
+        let userEmail: string 
+        let userPassword: string 
+        let passwordConf: string 
+
+        if(isRegistering) {
+
+            name = event.target[0].value
+            userEmail = event.target[1].value
+            userPassword = event.target[2].value
+            passwordConf = event.target[3].value
+
+            if(name.length < 5) {
+                return
+            } else if(userPassword.length < 7) {
+                return
+            } else if(userPassword !== passwordConf) {
+                return
+            }
+
+            const registeringUser: User = {name, email: userEmail, password: userPassword}
+            const result: ApiResponse = await createNewUser(registeringUser)
+
+            if(result.status == 201) {
+                console.log("Tudo certo :) \n" + result.response)
+            } else {
+                console.log("Tudo errado ;( \n" + result.response.title + "\n" + result.status)
+            }
+        } else {
+
+            userEmail = event.target[0].value
+            userPassword = event.target[1].value
+
+            const userToLogin: User = {password: userPassword, email: userEmail}
+            console.log(userToLogin)
+
+            const result: ApiResponse = await loginUser(userToLogin)
+
+            if(result.status == 200) {
+                console.log("Tudo certo ; \n" + result.response.title)
+            } else {
+                console.log("Tudo errado ;( \n" + result.response.title)
+            }
+
+        }
+    }
+
     return(
         <div className={`${style.container}`}>
 
@@ -30,7 +82,7 @@ export default function CredentialsPage({isRegistering}: CredentialsProps) {
 
             <form
                 onSubmit={(ev) => {ev.preventDefault()
-                    
+                    credentialMethod(ev)
                 }}>
             
                 {isRegistering
@@ -58,6 +110,7 @@ export default function CredentialsPage({isRegistering}: CredentialsProps) {
                     type="password" 
                     name="password" 
                     id="password" 
+                    maxLength={50}
                     className={`${style.input_style}`}
                 />
 
@@ -68,6 +121,7 @@ export default function CredentialsPage({isRegistering}: CredentialsProps) {
                             type="password" 
                             name="password" 
                             id="password" 
+                            maxLength={50}
                             className={`${style.input_style}`}
                         />
                     :
